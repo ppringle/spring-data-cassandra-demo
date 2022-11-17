@@ -1,21 +1,3 @@
-#endpoints:
-#  prometheus:
-#    enabled: true
-#
-#management:
-#  health.cassandra.enabled: false
-#  metrics:
-#    export:
-#      prometheus:
-#        enabled: true
-#  endpoints:
-#    prometheus:
-#      enabled: true
-#    web:
-#      exposure:
-#        include: "*"
-#    metrics.enabled: true
-
 management:
   endpoints:
     web:
@@ -25,7 +7,6 @@ management:
     health:
       show-details: always
 
-
 spring:
   application:
     name: spring-data-cassandra-demo
@@ -34,29 +15,30 @@ spring:
       schema-action: create_if_not_exists
       username: cassandra
       password: cassandra
+      contact-points: localhost
+      port: 9042
+      keyspace-name: demo
+      local-datacenter: datacenter1
 
-spring.data.cassandra:
-  contact-points: localhost
-  port: 9042
-  keyspace-name: demo
-  ttl: 86400 # 1 day
-  ssl: false
-  consistency-level: LOCAL_QUORUM
-  connectTimeout: 100
-  readTimeout: 1000
-  pooling:
-    heartbeatIntervalSeconds: 300 # 5 mins
-    poolTimeoutMillis: 10000 # 2.7 hours
-    idleTimeoutSeconds: 60000 # 16.6 hours
-    healthCheckInterval: 300 # 5 mins
-    local:
-      coreConnectionsPerHost: 1
-      maxConnectionsPerHost: 8
-      maxSimultaneousRequests: 1024
-    remote:
-      coreConnectionsPerHost: 1
-      maxConnectionsPerHost: 8
-      maxSimultaneousRequests: 256
+#spring.data.cassandra:
+#  ttl: 86400 # 1 day
+#  ssl: false
+#  consistency-level: LOCAL_QUORUM
+#  connectTimeout: 100
+#  readTimeout: 1000
+#  pooling:
+#    heartbeatIntervalSeconds: 300 # 5 mins
+#    poolTimeoutMillis: 10000 # 2.7 hours
+#    idleTimeoutSeconds: 60000 # 16.6 hours
+#    healthCheckInterval: 300 # 5 mins
+#    local:
+#      coreConnectionsPerHost: 1
+#      maxConnectionsPerHost: 8
+#      maxSimultaneousRequests: 1024
+#    remote:
+#      coreConnectionsPerHost: 1
+#      maxConnectionsPerHost: 8
+#      maxSimultaneousRequests: 256
 
 server:
   port: 9091
