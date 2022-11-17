@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  cassandra:
+    image: docker.io/bitnami/cassandra:4.0.4-debian-11-r7
+    user: root
+    ports:
+      - "9042:9042"
+      - "7000:7000"
+    volumes:
+      - './cassandra/data:/bitnami'
+      - './cassandra/init-scripts:/docker-entrypoint-initdb.d'
+      - './cassandra/tmp:/tmp'
+    environment:
+      - CASSANDRA_CLUSTER_NAME=demo
